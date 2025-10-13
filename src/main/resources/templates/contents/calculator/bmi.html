@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI 계산기 - 헬스케어</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        /* BMI Calculator Section */
+        .bmi-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .bmi-section h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .bmi-section p {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .bmi-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5f2;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .result .bmi-value {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .result .bmi-category {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .result .bmi-advice {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* BMI Info Section */
+        .bmi-info {
+            margin-top: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .bmi-info h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bmi-table {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .bmi-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bmi-table th,
+        .bmi-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e1e5f2;
+        }
+
+        .bmi-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .bmi-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bmi-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .bmi-section h1 {
+                font-size: 2rem;
+            }
+            
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .bmi-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="nav">
+            <a href="/" class="logo">
+                <i class="fas fa-heartbeat"></i> 헬스케어
+            </a>
+            <a href="/" class="back-btn">
+                <i class="fas fa-arrow-left"></i> 메인으로 돌아가기
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- BMI Calculator Section -->
+        <div class="bmi-section">
+            <h1><i class="fas fa-calculator"></i> BMI 계산기</h1>
+            <p>키와 몸무게를 입력하여 체질량지수를 계산하고 건강 상태를 확인해보세요</p>
+            
+            <form class="bmi-form" id="bmiForm">
+                <div class="form-group">
+                    <label for="height"><i class="fas fa-ruler-vertical"></i> 키 (cm)</label>
+                    <input type="number" id="height" placeholder="예: 170" required min="100" max="250">
+                </div>
+                <div class="form-group">
+                    <label for="weight"><i class="fas fa-weight"></i> 몸무게 (kg)</label>
+                    <input type="number" id="weight" placeholder="예: 70" required min="30" max="300">
+                </div>
+                <button type="submit" class="calculate-btn">
+                    <i class="fas fa-calculator"></i> BMI 계산하기
+                </button>
+            </form>
+            
+            <div class="result" id="result">
+                <h3><i class="fas fa-chart-line"></i> BMI 결과</h3>
+                <div class="bmi-value" id="bmiValue"></div>
+                <div class="bmi-category" id="bmiCategory"></div>
+                <div class="bmi-advice" id="bmiAdvice"></div>
+            </div>
+        </div>
+
+        <!-- BMI Info Section -->
+        <div class="bmi-info">
+            <h3><i class="fas fa-info-circle"></i> BMI 기준표</h3>
+            <div class="bmi-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>BMI 범위</th>
+                            <th>분류</th>
+                            <th>건강 상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>18.5 미만</td>
+                            <td>저체중</td>
+                            <td>체중 증가 필요</td>
+                        </tr>
+                        <tr>
+                            <td>18.5 ~ 22.9</td>
+                            <td>정상체중</td>
+                            <td>건강한 상태</td>
+                        </tr>
+                        <tr>
+                            <td>23.0 ~ 24.9</td>
+                            <td>과체중</td>
+                            <td>체중 관리 권장</td>
+                        </tr>
+                        <tr>
+                            <td>25.0 ~ 29.9</td>
+                            <td>비만 1단계</td>
+                            <td>체중 감량 필요</td>
+                        </tr>
+                        <tr>
+                            <td>30.0 이상</td>
+                            <td>비만 2단계 이상</td>
+                            <td>의료진 상담 필요</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BMI 계산기 기능
+        document.getElementById('bmiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            if (height && weight) {
+                const heightInMeters = height / 100;
+                const bmi = weight / (heightInMeters * heightInMeters);
+                const roundedBMI = bmi.toFixed(1);
+                
+                let category, advice, categoryClass;
+                
+                if (bmi < 18.5) {
+                    category = "저체중";
+                    advice = "건강한 체중 증가를 위해 영양사와 상담하고, 규칙적인 운동과 균형 잡힌 식단을 통해 체중을 늘려보세요.";
+                    categoryClass = "underweight";
+                } else if (bmi >= 18.5 && bmi < 23) {
+                    category = "정상체중";
+                    advice = "현재 체중을 유지하고 규칙적인 운동과 건강한 식습관을 계속 유지하세요. 훌륭한 상태입니다!";
+                    categoryClass = "normal";
+                } else if (bmi >= 23 && bmi < 25) {
+                    category = "과체중";
+                    advice = "체중 감량을 위해 식단 조절과 규칙적인 운동을 권장합니다. 작은 변화부터 시작해보세요.";
+                    categoryClass = "overweight";
+                } else if (bmi >= 25 && bmi < 30) {
+                    category = "비만 1단계";
+                    advice = "건강한 체중 감량을 위해 전문가의 도움을 받고, 생활습관 개선이 필요합니다.";
+                    categoryClass = "obese1";
+                } else {
+                    category = "비만 2단계 이상";
+                    advice = "즉시 의료진과 상담하여 체중 관리 계획을 세우고, 전문적인 치료가 필요할 수 있습니다.";
+                    categoryClass = "obese2";
+                }
+                
+                document.getElementById('bmiValue').textContent = roundedBMI;
+                document.getElementById('bmiCategory').textContent = category;
+                document.getElementById('bmiAdvice').textContent = advice;
+                
+                // 결과 섹션 표시
+                const resultDiv = document.getElementById('result');
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result ' + categoryClass;
+                
+                // 결과로 스크롤
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // 입력값 유효성 검사
+        document.getElementById('height').addEventListener('input', function() {
+            if (this.value < 100 || this.value > 250) {
+                this.setCustomValidity('키는 100cm ~ 250cm 사이로 입력해주세요.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        document.getElementById('weight').addEventListener('input', function() {
+            if (this.value < 30 || this.value > 300) {
+                this.setCustomValidity('몸무게는 30kg ~ 300kg 사이로 입력해주세요.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    </script>
+</body>
+</html>

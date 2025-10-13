@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헬스케어 - 건강한 삶을 위한 시작</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .login-btn-nav {
+            background: #667eea;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn-nav:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .register-btn-nav {
+            background: #ff6b6b;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .register-btn-nav:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e1e5f2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+
+        /* Tips Section */
+        .tips {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .tips h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip-card {
+            background: #f8f9ff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateX(5px);
+        }
+
+        .tip-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-heartbeat"></i> 헬스케어
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">홈</a></li>
+                <li><a href="#features">기능</a></li>
+                <li><a href="/contents/calculator">BMI 계산</a></li>
+                <li><a href="#tips">건강 팁</a></li>
+                <li><a href="/auth/login" class="login-btn-nav">로그인</a></li>
+                <li><a href="/auth/register" class="register-btn-nav">회원가입</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>건강한 삶을 위한 시작</h1>
+            <p>당신의 건강을 관리하고 더 나은 삶을 살아보세요</p>
+            <a href="/contents/calculator" class="cta-button">지금 시작하기</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>주요 기능</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>BMI 계산기</h3>
+                    <p>키와 몸무게를 입력하여 체질량지수를 계산하고 건강 상태를 확인하세요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>운동 추천</h3>
+                    <p>개인의 체력과 목표에 맞는 맞춤형 운동 프로그램을 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>영양 관리</h3>
+                    <p>균형 잡힌 식단과 영양소 정보를 통해 건강한 식습관을 형성하세요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Health Tips Section -->
+    <section id="tips" class="tips">
+        <div class="container">
+            <h2>건강 팁</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4><i class="fas fa-water"></i> 충분한 수분 섭취</h4>
+                    <p>하루에 최소 8잔의 물을 마시는 것이 건강에 도움이 됩니다.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-bed"></i> 충분한 수면</h4>
+                    <p>성인은 하루 7-9시간의 충분한 수면이 필요합니다.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-running"></i> 규칙적인 운동</h4>
+                    <p>주 3-4회, 30분 이상의 중강도 운동을 권장합니다.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-leaf"></i> 균형 잡힌 식단</h4>
+                    <p>다양한 영양소를 포함한 균형 잡힌 식단을 유지하세요.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-heart"></i> 스트레스 관리</h4>
+                    <p>명상, 요가, 취미 활동을 통해 스트레스를 관리하세요.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-ban"></i> 금연과 금주</h4>
+                    <p>흡연과 과도한 음주는 건강에 해롭습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 헬스케어. 건강한 삶을 위한 시작.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 부드러운 스크롤 효과
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 헤더 스크롤 효과
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
