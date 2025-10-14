@@ -223,23 +223,23 @@
         <h1 class="login-title">로그인</h1>
         <p class="login-subtitle">헬스케어 계정으로 로그인하세요</p>
 
-        <form id="loginForm">
+        <form id="loginForm" action="/auth/login" method="get">
             <div class="form-group">
-                <label for="email">이메일</label>
+                <label for="name">이메일</label>
                 <div class="input-container">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                    <input type="text" id="name" name="name" placeholder="이메일을 입력하세요" value="a">
                 </div>
             </div>
-
+        
             <div class="form-group">
                 <label for="password">비밀번호</label>
                 <div class="input-container">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                    <input type="text" id="password" name="password" placeholder="비밀번호를 입력하세요" value="b">
                 </div>
             </div>
-
+        
             <button type="submit" class="login-btn">
                 <i class="fas fa-sign-in-alt"></i> 로그인
             </button>
@@ -259,14 +259,14 @@
         </div>
 
         <div class="links">
-            <a href="/auth/register">회원가입</a>
+            <a href="auth/register">회원가입</a>
             <a href="#" onclick="alert('비밀번호 찾기 기능은 준비 중입니다.')">비밀번호 찾기</a>
         </div>
     </div>
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // e.preventDefault();
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -277,18 +277,18 @@
                 return;
             }
             
-            if (!email.includes('@')) {
-                alert('올바른 이메일 형식을 입력해주세요.');
-                return;
-            }
+            // if (!email.includes('@')) {
+            //     alert('올바른 이메일 형식을 입력해주세요.');
+            //     return;
+            // }
             
-            if (password.length < 6) {
-                alert('비밀번호는 최소 6자 이상이어야 합니다.');
-                return;
-            }
+            // if (password.length < 6) {
+            //     alert('비밀번호는 최소 6자 이상이어야 합니다.');
+            //     return;
+            // }
             
-            // 실제 로그인 로직은 서버에서 처리
-            alert('로그인 기능은 준비 중입니다. 개발 중인 기능입니다.');
+            // // 실제 로그인 로직은 서버에서 처리
+            // alert('로그인 기능은 준비 중입니다. 개발 중인 기능입니다.');
             
             // 로그인 성공 시 메인 페이지로 이동
             // window.location.href = '/';
