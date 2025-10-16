@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>통합 계산기 (DTO 방식)</title>
+</head>
+
+<body>
+    <h1>통합 사칙연산 계산기 (DTO 방식)</h1>
+    <p>두 숫자와 연산자를 선택하고 계산 버튼을 누르세요.</p>
+
+    <form action="/calculator" method="get">
+        <div>
+            <label for="num1">첫 번째 숫자:</label>
+            <input type="number" id="num1" name="num1" placeholder="첫 번째 숫자" required>
+        </div>
+
+        <div>
+            <label for="operator">연산자:</label>
+            <select id="operator" name="operator" required>
+                <option value="+">＋ 더하기</option>
+                <option value="-">− 빼기</option>
+                <option value="*">× 곱하기</option>
+                <option value="/">÷ 나누기</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="num2">두 번째 숫자:</label>
+            <input type="number" id="num2" name="num2" placeholder="두 번째 숫자" required>
+        </div>
+
+        <button type="submit">계산하기</button>
+    </form>
+
+    <hr>
+</body>
+
+</html>
