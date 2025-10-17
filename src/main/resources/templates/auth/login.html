@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -200,17 +201,18 @@
             .login-container {
                 padding: 2rem 1.5rem;
             }
-            
+
             .logo {
                 font-size: 2rem;
             }
-            
+
             .login-title {
                 font-size: 1.5rem;
             }
         }
     </style>
 </head>
+
 <body>
     <a href="/" class="back-home">
         <i class="fas fa-arrow-left"></i> 메인으로
@@ -231,7 +233,7 @@
                     <input type="text" id="name" name="name" placeholder="이메일을 입력하세요" value="kang@test.com">
                 </div>
             </div>
-        
+
             <div class="form-group">
                 <label for="password">비밀번호</label>
                 <div class="input-container">
@@ -239,12 +241,15 @@
                     <input type="text" id="password" name="password" placeholder="비밀번호를 입력하세요" value="1234">
                 </div>
             </div>
-        
+
             <button type="submit" class="login-btn">
                 <i class="fas fa-sign-in-alt"></i> 로그인
             </button>
         </form>
-
+        <div th:object="${messenger}">
+            <p>code: <span th:text="*{code}">0</span></p>
+            <p>message: <span th:text="*{message}">로그인 하세요</span></p>
+        </div>
         <div class="divider">
             <span>또는</span>
         </div>
@@ -265,43 +270,44 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
             // e.preventDefault();
-            
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            
+
             // 간단한 유효성 검사
             if (!email || !password) {
                 alert('이메일과 비밀번호를 모두 입력해주세요.');
                 return;
             }
-            
+
             // if (!email.includes('@')) {
             //     alert('올바른 이메일 형식을 입력해주세요.');
             //     return;
             // }
-            
+
             // if (password.length < 6) {
             //     alert('비밀번호는 최소 6자 이상이어야 합니다.');
             //     return;
             // }
-            
+
             // // 실제 로그인 로직은 서버에서 처리
             // alert('로그인 기능은 준비 중입니다. 개발 중인 기능입니다.');
-            
+
             // 로그인 성공 시 메인 페이지로 이동
             // window.location.href = '/';
         });
 
         // 소셜 로그인 버튼 이벤트
-        document.querySelector('.social-btn.google').addEventListener('click', function() {
+        document.querySelector('.social-btn.google').addEventListener('click', function () {
             alert('구글 로그인 기능은 준비 중입니다.');
         });
 
-        document.querySelector('.social-btn.naver').addEventListener('click', function() {
+        document.querySelector('.social-btn.naver').addEventListener('click', function () {
             alert('네이버 로그인 기능은 준비 중입니다.');
         });
     </script>
 </body>
+
 </html>

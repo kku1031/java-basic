@@ -5,9 +5,9 @@ public class Messenger {
     private int code;
     private String message;
 
-    // 기본 생성자 (Spring이나 JSON 파싱 시 종종 필요합니다)
-    public Messenger() {
-    }
+    // // 기본 생성자 (Spring이나 JSON 파싱 시 종종 필요합니다)
+    // public Messenger() {
+    // }
 
     // 💡 Getter: 외부에서 값을 읽어갈 수 있게 해줍니다.
     public int getCode() {

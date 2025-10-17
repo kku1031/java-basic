@@ -7,6 +7,11 @@ public class LoginDTO {
     private String name;
     private String password; // ->속성과 기능이 있어야 하는데 기능이 없으니까 에러가 남.
 
+    // 디폴트 생성자, 쓰레기 만드는 놈., 생성자를 통해 클래스를 구분함
+    public LoginDTO() {
+
+    }
+
     // DTO(Object 니까 객체 여야 되니까 속성과 기능이 있어야함)
     // Getter (속성 값 읽기)
     public String getName() {
