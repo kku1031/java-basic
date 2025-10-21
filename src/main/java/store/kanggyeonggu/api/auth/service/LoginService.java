@@ -2,11 +2,13 @@ package store.kanggyeonggu.api.auth.service;
 
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import store.kanggyeonggu.api.auth.domain.LoginDTO;
 import store.kanggyeonggu.api.auth.domain.LoginVO;
 import store.kanggyeonggu.api.common.domain.Messenger;
 
 @Service
+@RequiredArgsConstructor
 public class LoginService {
     // 들여쓰기 해야 자식이 됨
     public Messenger login(LoginDTO loginDTO) {
