@@ -1,14 +1,24 @@
 package store.kanggyeonggu.api.auth.controller;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import org.springframework.ui.Model;
 // import ch.qos.logback.core.model.Model;
 import store.kanggyeonggu.api.auth.domain.LoginDTO;
 import store.kanggyeonggu.api.auth.service.LoginService;
 import store.kanggyeonggu.api.common.domain.Messenger;
+import store.kanggyeonggu.api.user.domain.UserDTO;
 
 @Controller
 public class LoginContoller {
@@ -23,9 +33,6 @@ public class LoginContoller {
     @GetMapping({ "/auth/login" })
     public String loginSubmit(@RequestParam("name") String name,
             @RequestParam("password") String password, Model model) {
-        System.out.println("로그인 서비스로 들어옴");
-        System.out.println("화면에서 로그인서비스로 전달된 이메일 : " + name);
-        System.out.println("화면에서 로그인서비스 전달된 비밀번호 : " + password);
 
         LoginDTO loginDTO = new LoginDTO(); // 객체 (메모리에 객체의 주소를 만들어라) ->지역변수,
         // 현업에서는 그냥 다 속성으로 퉁침.
@@ -33,12 +40,52 @@ public class LoginContoller {
         loginDTO.setPassword(password);
 
         Messenger messenger = loginService.login(loginDTO); // => 객체를 초기화 한다.
-        System.out.println("서비스에서 컨트롤러로 전달된 코드 : " + messenger.getCode());
-        System.out.println("서비스에서 컨트롤러로 전달된 메시지 : " + messenger.getMessage());
 
-        // ""html으로 보내야 되니까, 자바에서 사용 하는 숫자값
+        if (messenger.getCode() == 0) {
+            // 로그인 성공 시: train.csv 로드하여 상위 5개를 터미널에 출력하고 user/list로 렌더링
+            try {
+                ClassPathResource resource = new ClassPathResource("static/csv/train.csv");
+                List<CSVRecord> records = new ArrayList<>();
+
+                try (Reader reader = new InputStreamReader(resource.getInputStream());
+                        CSVParser parser = CSVFormat.Builder.create()
+                                .setHeader()
+                                .setSkipHeaderRecord(true)
+                                .setTrim(true)
+                                .build()
+                                .parse(reader)) {
+
+                    for (CSVRecord record : parser) {
+                        records.add(record);
+                    }
+                }
+
+                List<UserDTO> userDTOList = new ArrayList<>();
+                int count = 0;
+                for (CSVRecord record : records) {
+                    if (count >= 5)
+                        break;
+                    userDTOList.add(new UserDTO(record));
+                    count++;
+                }
+
+                // 터미널 출력 (상위 5개)
+                System.out.println("[LOGIN SUCCESS] Loaded users from train.csv (top " + userDTOList.size() + ")");
+                for (UserDTO u : userDTOList) {
+                    System.out.println(u);
+                }
+
+                model.addAttribute("users", userDTOList);
+                return "user/list";
+            } catch (Exception e) {
+                // CSV 로딩 실패 시에도 로그인 화면으로 에러 메시지 표시
+                messenger.setCode(3);
+                messenger.setMessage("데이터 로딩 실패");
+            }
+        }
+
+        // 실패 시: 메시지와 함께 로그인 화면으로
         model.addAttribute("messenger", messenger);
-
         return "auth/login";
     }
 }

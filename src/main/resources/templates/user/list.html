@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>User List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Train Users (전체 데이터)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>PassengerId</th>
+                <th>Name</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>Fare</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="u : ${users}">
+                <td th:text="${u.passengerId}"></td>
+                <td th:text="${u.name}"></td>
+                <td th:text="${u.sex}"></td>
+                <td th:text="${u.age}"></td>
+                <td th:text="${u.fare}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

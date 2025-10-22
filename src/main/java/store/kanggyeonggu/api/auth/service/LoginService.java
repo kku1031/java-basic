@@ -40,8 +40,8 @@ public class LoginService {
         }
 
         Messenger messenger = new Messenger();
-        messenger.getCode();
-        messenger.getMessage();
+        messenger.setCode(code);
+        messenger.setMessage(message);
 
         return messenger;
 

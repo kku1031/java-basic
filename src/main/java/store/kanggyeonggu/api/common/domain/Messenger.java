@@ -1,5 +1,6 @@
 package store.kanggyeonggu.api.common.domain;
 
+//성공 실패 여부
 public class Messenger {
 
     private int code;

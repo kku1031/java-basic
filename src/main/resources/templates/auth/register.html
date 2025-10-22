@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,10 +111,25 @@
             border-radius: 2px;
         }
 
-        .strength-weak { background: #ff4757; width: 25%; }
-        .strength-fair { background: #ffa502; width: 50%; }
-        .strength-good { background: #2ed573; width: 75%; }
-        .strength-strong { background: #1e90ff; width: 100%; }
+        .strength-weak {
+            background: #ff4757;
+            width: 25%;
+        }
+
+        .strength-fair {
+            background: #ffa502;
+            width: 50%;
+        }
+
+        .strength-good {
+            background: #2ed573;
+            width: 75%;
+        }
+
+        .strength-strong {
+            background: #1e90ff;
+            width: 100%;
+        }
 
         .form-row {
             display: flex;
@@ -264,11 +280,11 @@
             .register-container {
                 padding: 2rem 1.5rem;
             }
-            
+
             .logo {
                 font-size: 2rem;
             }
-            
+
             .register-title {
                 font-size: 1.5rem;
             }
@@ -280,6 +296,7 @@
         }
     </style>
 </head>
+
 <body>
     <a href="/" class="back-home">
         <i class="fas fa-arrow-left"></i> 메인으로
@@ -351,7 +368,7 @@
             <div class="checkbox-group">
                 <input type="checkbox" id="agreeTerms" required>
                 <label for="agreeTerms">
-                    <a href="#" onclick="alert('이용약관을 확인하세요.')">이용약관</a> 및 
+                    <a href="#" onclick="alert('이용약관을 확인하세요.')">이용약관</a> 및
                     <a href="#" onclick="alert('개인정보처리방침을 확인하세요.')">개인정보처리방침</a>에 동의합니다.
                 </label>
             </div>
@@ -382,27 +399,27 @@
         </div>
 
         <p>
-            이미 계정이 있으신가요? 
+            이미 계정이 있으신가요?
             <a href="/auth/login" class="login-link">로그인하기</a>
         </p>
     </div>
 
     <script>
         // 비밀번호 강도 확인
-        document.getElementById('password').addEventListener('input', function() {
+        document.getElementById('password').addEventListener('input', function () {
             const password = this.value;
             const strengthFill = document.getElementById('strengthFill');
             const strengthText = document.getElementById('strengthText');
-            
+
             let strength = 0;
             let strengthLabel = '';
-            
+
             if (password.length >= 8) strength++;
             if (/[a-z]/.test(password)) strength++;
             if (/[A-Z]/.test(password)) strength++;
             if (/[0-9]/.test(password)) strength++;
             if (/[^A-Za-z0-9]/.test(password)) strength++;
-            
+
             switch (strength) {
                 case 0:
                 case 1:
@@ -426,15 +443,15 @@
                     strengthLabel = '매우 강함';
                     break;
             }
-            
+
             strengthText.textContent = `비밀번호 강도: ${strengthLabel}`;
         });
 
         // 비밀번호 확인
-        document.getElementById('confirmPassword').addEventListener('input', function() {
+        document.getElementById('confirmPassword').addEventListener('input', function () {
             const password = document.getElementById('password').value;
             const confirmPassword = this.value;
-            
+
             if (confirmPassword && password !== confirmPassword) {
                 this.setCustomValidity('비밀번호가 일치하지 않습니다.');
             } else {
@@ -443,9 +460,9 @@
         });
 
         // 회원가입 폼 제출
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
@@ -453,51 +470,49 @@
             const confirmPassword = document.getElementById('confirmPassword').value;
             const phone = document.getElementById('phone').value;
             const agreeTerms = document.getElementById('agreeTerms').checked;
-            
+
             // 유효성 검사
             if (!firstName || !lastName || !email || !password || !confirmPassword || !phone) {
                 alert('모든 필수 항목을 입력해주세요.');
                 return;
             }
-            
+
             if (!agreeTerms) {
                 alert('이용약관 및 개인정보처리방침에 동의해주세요.');
                 return;
             }
-            
+
             if (password !== confirmPassword) {
                 alert('비밀번호가 일치하지 않습니다.');
                 return;
             }
-            
+
             if (password.length < 6) {
                 alert('비밀번호는 최소 6자 이상이어야 합니다.');
                 return;
             }
-            
+
             if (!email.includes('@')) {
                 alert('올바른 이메일 형식을 입력해주세요.');
                 return;
             }
-            
-            // 실제 회원가입 로직은 서버에서 처리
-            alert('회원가입 기능은 준비 중입니다. 개발 중인 기능입니다.');
-            
-            // 회원가입 성공 시 로그인 페이지로 이동
-            // window.location.href = '/auth/login';
+
+            // 회원가입 성공 알림 후 날씨 리스트 페이지로 이동 (임시)
+            alert('회원가입이 성공하였습니다.');
+            window.location.href = '/auth/register';
         });
 
         // 소셜 회원가입 버튼 이벤트
-        document.querySelector('.social-btn.google').addEventListener('click', function() {
+        document.querySelector('.social-btn.google').addEventListener('click', function () {
             alert('구글 회원가입 기능은 준비 중입니다.');
         });
 
-        document.querySelector('.social-btn.naver').addEventListener('click', function() {
+        document.querySelector('.social-btn.naver').addEventListener('click', function () {
             alert('네이버 회원가입 기능은 준비 중입니다.');
         });
 
         // 휴대폰 번호 자동 포맷팅
-        document.getElementById('phone').addEventListener('input', function() {
+        document.getElementById('phone').addEventListener('input', function () {
             let value = this.value.replace(/\D/g, '');
             if (value.length >= 11) {
                 value = value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
@@ -510,4 +525,5 @@
         });
     </script>
 </body>
+
 </html>

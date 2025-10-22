@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Weather List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Weather Data (sample)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>일시</th>
+                <th>평균기온</th>
+                <th>최고기온</th>
+                <th>최저기온</th>
+                <th>강수량</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="w : ${weathers}">
+                <td th:text="${w.dateTime}"></td>
+                <td th:text="${w.avgTemperature}"></td>
+                <td th:text="${w.maxTemperature}"></td>
+                <td th:text="${w.minTemperature}"></td>
+                <td th:text="${w.precipitation}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
