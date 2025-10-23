@@ -1,18 +1,18 @@
 package store.kanggyeonggu.api.user.service;
 
-import org.springframework.stereotype.Service;
-
-import lombok.RequiredArgsConstructor;
+import store.kanggyeonggu.api.common.domain.Messenger;
 import store.kanggyeonggu.api.user.domain.UserDTO;
-import store.kanggyeonggu.api.user.repository.UserRepository;
 
-@Service
-@RequiredArgsConstructor // 필드만 받는 생성자를 만들어줌
-public class UserService {
+public interface UserService {
 
-    private final UserRepository userRepository;
+    Messenger save(UserDTO userDTO);
 
-    public void saveUser(UserDTO userDTO) {
-        userRepository.save(userDTO);
-    }
+    Messenger update(UserDTO userDTO);
+
+    Messenger delete(UserDTO userDTO);
+
+    Messenger findById(UserDTO userDTO);
+
+    Messenger findAll(UserDTO userDTO);
+
 }

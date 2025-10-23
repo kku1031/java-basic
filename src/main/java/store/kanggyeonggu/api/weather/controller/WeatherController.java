@@ -11,22 +11,22 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import store.kanggyeonggu.api.weather.domain.WeatherDTO;
 import store.kanggyeonggu.api.weather.service.WeatherService;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/weathers")
 public class WeatherController {
 
     private final WeatherService weatherService;
 
-    public WeatherController(WeatherService weatherService) {
-        this.weatherService = weatherService;
-    }
-
-    @GetMapping("auth/weather")
+    @PostMapping("/all")
     public List<WeatherDTO> processAllCsvData() throws Exception {
         ClassPathResource resource = new ClassPathResource("static/csv/TEST_weather_00.csv-Grid view.csv");
 

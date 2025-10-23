@@ -21,7 +21,7 @@ import store.kanggyeonggu.api.common.domain.Messenger;
 import store.kanggyeonggu.api.user.domain.UserDTO;
 
 @Controller
-public class LoginContoller {
+public class LoginContoller implements LoginService {
 
     private final LoginService loginService; // 속성이 없으니까 Service의 속성 끌어옴
 
@@ -87,5 +87,11 @@ public class LoginContoller {
         // 실패 시: 메시지와 함께 로그인 화면으로
         model.addAttribute("messenger", messenger);
         return "auth/login";
+    }
+
+    @Override
+    public Messenger login(LoginDTO loginDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'login'");
     }
 }

@@ -1,9 +1,10 @@
-package store.kanggyeonggu.api.calculator.repository;
+package store.kanggyeonggu.api.calculator.service;
 
+import org.springframework.stereotype.Service;
 import store.kanggyeonggu.api.calculator.domain.CalculatorDTO;
-import store.kanggyeonggu.api.calculator.service.CalculatorService;
 
-public class CalculatorRepository implements CalculatorService {
+@Service
+public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
     public int add(CalculatorDTO calculatorDTO) {

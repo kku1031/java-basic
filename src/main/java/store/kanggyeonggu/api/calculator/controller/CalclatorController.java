@@ -1,9 +1,9 @@
-package store.kanggyeonggu.api.calculator.repository;
+package store.kanggyeonggu.api.calculator.controller;
 
 import store.kanggyeonggu.api.calculator.domain.CalculatorDTO;
 import store.kanggyeonggu.api.calculator.service.CalculatorService;
 
-public class CalculatorRepository implements CalculatorService {
+public class CalclatorController implements CalculatorService {
 
     @Override
     public int add(CalculatorDTO calculatorDTO) {
