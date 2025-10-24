@@ -1,18 +1,25 @@
 package store.kanggyeonggu.api.user.service;
 
+import java.util.List;
+
 import store.kanggyeonggu.api.common.domain.Messenger;
 import store.kanggyeonggu.api.user.domain.UserDTO;
 
 public interface UserService {
 
-    Messenger save(UserDTO userDTO);
+    Messenger save(UserDTO user);
 
-    Messenger update(UserDTO userDTO);
+    Messenger saveAll(List<UserDTO> users);
 
-    Messenger delete(UserDTO userDTO);
+    Messenger update(UserDTO user);
 
-    Messenger findById(UserDTO userDTO);
+    Messenger delete(String id);
 
-    Messenger findAll(UserDTO userDTO);
+    Messenger findById(String id);
+
+    Messenger findAll();
+
+    // 저장된 데이터를 직접 반환하는 메소드
+    List<UserDTO> getAllSavedUsers();
 
 }

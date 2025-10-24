@@ -1,6 +1,7 @@
 package store.kanggyeonggu.api.user.service;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -12,6 +13,10 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.core.io.ClassPathResource;
 >>>>>>> ad733d3 (집에서 테스트)
+=======
+import java.util.List;
+
+>>>>>>> 499b9fd (강사님꺼에 맞게 CRUD 구조화)
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -26,33 +31,46 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public Messenger save(UserDTO userDTO) {
-        userRepository.save(userDTO);
-        return new Messenger();
+    public Messenger save(UserDTO user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public Messenger update(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Messenger saveAll(List<UserDTO> users) {
+        return userRepository.saveAll(users);
     }
 
     @Override
-    public Messenger delete(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public Messenger update(UserDTO user) {
+        return userRepository.update(user);
     }
 
     @Override
-    public Messenger findById(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    public Messenger delete(String id) {
+        return userRepository.delete(id);
     }
 
     @Override
-    public Messenger findAll(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    public Messenger findById(String id) {
+        return userRepository.findById(id);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
    
 
 >>>>>>> ad733d3 (집에서 테스트)
+=======
+
+    @Override
+    public Messenger findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public List<UserDTO> getAllSavedUsers() {
+        return userRepository.getAllSavedUsers();
+    }
+
+>>>>>>> 499b9fd (강사님꺼에 맞게 CRUD 구조화)
 }

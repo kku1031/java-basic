@@ -14,6 +14,7 @@
         td {
             border: 1px solid #ddd;
             padding: 8px;
+            text-align: center;
         }
 
         th {
@@ -23,15 +24,25 @@
 </head>
 
 <body>
-    <h2>Weather Data (sample)</h2>
+    <h2>Weather Data (full)</h2>
+
+    <!-- 메시지 표시 부분 -->
+    <div th:if="${messenger}" style="padding: 10px; margin: 10px 0; border-radius: 5px;"
+        th:style="${messenger.code == 200 ? 'background-color: #d4edda; color: #155724;' : 'background-color: #f8d7da; color: #721c24;'}">
+        <strong th:text="${messenger.message}"></strong>
+    </div>
+
     <table>
         <thead>
             <tr>
                 <th>일시</th>
-                <th>평균기온</th>
-                <th>최고기온</th>
-                <th>최저기온</th>
-                <th>강수량</th>
+                <th>평균기온(℃)</th>
+                <th>최고기온(℃)</th>
+                <th>최고기온시각</th>
+                <th>최저기온(℃)</th>
+                <th>최저기온시각</th>
+                <th>일교차(℃)</th>
+                <th>강수량(mm)</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +50,10 @@
                 <td th:text="${w.dateTime}"></td>
                 <td th:text="${w.avgTemperature}"></td>
                 <td th:text="${w.maxTemperature}"></td>
+                <td th:text="${w.maxTempTime}"></td>
                 <td th:text="${w.minTemperature}"></td>
+                <td th:text="${w.minTempTime}"></td>
+                <td th:text="${w.dailyRange}"></td>
                 <td th:text="${w.precipitation}"></td>
             </tr>
         </tbody>
