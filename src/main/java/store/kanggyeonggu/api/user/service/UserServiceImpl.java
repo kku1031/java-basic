@@ -1,22 +1,7 @@
 package store.kanggyeonggu.api.user.service;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import org.springframework.core.io.ClassPathResource;
->>>>>>> ad733d3 (집에서 테스트)
-=======
-import java.util.List;
-
->>>>>>> 499b9fd (강사님꺼에 맞게 CRUD 구조화)
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -54,13 +39,6 @@ public class UserServiceImpl implements UserService {
     public Messenger findById(String id) {
         return userRepository.findById(id);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-   
-
->>>>>>> ad733d3 (집에서 테스트)
-=======
 
     @Override
     public Messenger findAll() {
@@ -72,5 +50,4 @@ public class UserServiceImpl implements UserService {
         return userRepository.getAllSavedUsers();
     }
 
->>>>>>> 499b9fd (강사님꺼에 맞게 CRUD 구조화)
 }

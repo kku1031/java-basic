@@ -1,5 +1,8 @@
 package store.kanggyeonggu.api.weather.domain;
 
+import lombok.Data;
+
+@Data
 public class WeatherEntity {
 
     private String dateTime;

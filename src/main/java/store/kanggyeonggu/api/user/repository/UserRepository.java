@@ -11,43 +11,13 @@ import store.kanggyeonggu.api.user.domain.UserDTO;
 @Repository
 public class UserRepository {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // UserDTO 데이터 저장
-    public void save(UserDTO userDTO) {
-=======
     // 실제 데이터를 저장할 리스트
     private List<UserDTO> savedUsers = new ArrayList<>();
->>>>>>> 499b9fd (강사님꺼에 맞게 CRUD 구조화)
 
     // 저장된 데이터를 직접 반환하는 메소드
     public List<UserDTO> getAllSavedUsers() {
         return new ArrayList<>(savedUsers); // 복사본 반환
     }
-<<<<<<< HEAD
-=======
-    public void save(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
-
-    public void update(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    public void delete(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    public void findById(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    public void findAll(UserDTO userDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
->>>>>>> ad733d3 (집에서 테스트)
-=======
 
     public Messenger save(UserDTO user) {
         // 실제 데이터 저장
@@ -97,5 +67,4 @@ public class UserRepository {
         return messenger;
     }
 
->>>>>>> 499b9fd (강사님꺼에 맞게 CRUD 구조화)
 }

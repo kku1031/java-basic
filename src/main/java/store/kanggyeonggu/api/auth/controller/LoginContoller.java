@@ -46,7 +46,6 @@ public class LoginContoller implements LoginService {
                 List<UserDTO> userList = parseDefaultCsvFile();
 
                 // 터미널 출력 (상위 5개)
-                System.out.println("[LOGIN SUCCESS] Loaded users from train.csv (top " + userList.size() + ")");
                 for (int i = 0; i < Math.min(5, userList.size()); i++) {
                     System.out.println(userList.get(i));
                 }
