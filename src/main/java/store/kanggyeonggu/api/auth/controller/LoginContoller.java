@@ -112,7 +112,6 @@ public class LoginContoller implements LoginService {
 
     @Override
     public Messenger login(LoginDTO loginDTO) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'login'");
     }
 }

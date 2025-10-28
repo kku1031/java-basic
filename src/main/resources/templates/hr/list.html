@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>HR List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>HR Data (전체 데이터)</h2>
+
+    <!-- 메시지 표시 부분 -->
+    <div th:if="${messenger}" style="padding: 10px; margin: 10px 0; border-radius: 5px;"
+        th:style="${messenger.code == 200 ? 'background-color: #d4edda; color: #155724;' : 'background-color: #f8d7da; color: #721c24;'}">
+        <strong th:text="${messenger.message}"></strong>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>EmployeeNumber</th>
+                <th>Age</th>
+                <th>Attrition</th>
+                <th>BusinessTravel</th>
+                <th>Department</th>
+                <th>Education</th>
+                <th>Gender</th>
+                <th>JobRole</th>
+                <th>MaritalStatus</th>
+                <th>MonthlyIncome</th>
+                <th>OverTime</th>
+                <th>TotalWorkingYears</th>
+                <th>YearsAtCompany</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="hr : ${hrs}">
+                <td th:text="${hr.employeeNumber}"></td>
+                <td th:text="${hr.age}"></td>
+                <td th:text="${hr.attrition}"></td>
+                <td th:text="${hr.businessTravel}"></td>
+                <td th:text="${hr.department}"></td>
+                <td th:text="${hr.education}"></td>
+                <td th:text="${hr.gender}"></td>
+                <td th:text="${hr.jobRole}"></td>
+                <td th:text="${hr.maritalStatus}"></td>
+                <td th:text="${hr.monthlyIncome}"></td>
+                <td th:text="${hr.overTime}"></td>
+                <td th:text="${hr.totalWorkingYears}"></td>
+                <td th:text="${hr.yearsAtCompany}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>HR Detail</title>
+    <style>
+        .detail-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .detail-section {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        .detail-value {
+            color: #666;
+        }
+
+        th {
+            background: #f5f5f5;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="detail-container">
+        <h2>HR Detail</h2>
+
+        <!-- 메시지 표시 부분 -->
+        <div th:if="${messenger}" style="padding: 10px; margin: 10px 0; border-radius: 5px;"
+            th:style="${messenger.code == 200 ? 'background-color: #d4edda; color: #155724;' : 'background-color: #f8d7da; color: #721c24;'}">
+            <strong th:text="${messenger.message}"></strong>
+        </div>
+
+        <div class="detail-section">
+            <h3>Employee Information</h3>
+            <p><span class="detail-label">Employee Number:</span><span class="detail-value"
+                    th:text="${hr.employeeNumber}"></span></p>
+            <p><span class="detail-label">Age:</span><span class="detail-value" th:text="${hr.age}"></span></p>
+            <p><span class="detail-label">Gender:</span><span class="detail-value" th:text="${hr.gender}"></span></p>
+            <p><span class="detail-label">Marital Status:</span><span class="detail-value"
+                    th:text="${hr.maritalStatus}"></span></p>
+        </div>
+
+        <div class="detail-section">
+            <h3>Job Information</h3>
+            <p><span class="detail-label">Department:</span><span class="detail-value"
+                    th:text="${hr.department}"></span></p>
+            <p><span class="detail-label">Job Role:</span><span class="detail-value" th:text="${hr.jobRole}"></span>
+            </p>
+            <p><span class="detail-label">Job Level:</span><span class="detail-value" th:text="${hr.jobLevel}"></span>
+            </p>
+            <p><span class="detail-label">Over Time:</span><span class="detail-value" th:text="${hr.overTime}"></span>
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <h3>Compensation & Satisfaction</h3>
+            <p><span class="detail-label">Monthly Income:</span><span class="detail-value"
+                    th:text="${hr.monthlyIncome}"></span></p>
+            <p><span class="detail-label">Job Satisfaction:</span><span class="detail-value"
+                    th:text="${hr.jobSatisfaction}"></span></p>
+            <p><span class="detail-label">Environment Satisfaction:</span><span class="detail-value"
+                    th:text="${hr.environmentSatisfaction}"></span></p>
+        </div>
+    </div>
+</body>
+
+</html>
