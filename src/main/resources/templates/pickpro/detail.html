@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pickpro Detail</title>
+    <style>
+        .detail-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .detail-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+
+        .detail-value {
+            display: inline-block;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .message-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .message-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="detail-container">
+        <h2>Pickpro Detail</h2>
+
+        <!-- 메시지 표시 부분 -->
+        <div th:if="${messenger}" class="message"
+            th:classappend="${messenger.code == 200 ? 'message-success' : 'message-error'}">
+            <strong th:text="${messenger.message}"></strong>
+        </div>
+
+        <div th:if="${pickpro}">
+            <div class="detail-item">
+                <span class="detail-label">인덱스:</span>
+                <span class="detail-value" th:text="${pickpro.index}"></span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">상위부서:</span>
+                <span class="detail-value" th:text="${pickpro.parentDepartment}"></span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">부서:</span>
+                <span class="detail-value" th:text="${pickpro.department}"></span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">하위부서:</span>
+                <span class="detail-value" th:text="${pickpro.subDepartment}"></span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
